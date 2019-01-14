@@ -34,7 +34,8 @@ function parseData(data) {
   // 1st: R C L H
   // R lines contain C characters ('M' or 'T')
 
-  const splitted = data.split('\n');
+  const cahracterToSplitBy = process.platform.indexOf('win') > -1 ? '\r\n' : '\n';
+  const splitted = data.split(cahracterToSplitBy);
 
   // console.log(splitted);
 
@@ -81,6 +82,6 @@ function doLogic(parsedData) {
 function normalizeOutput(result) { // [[1], [0, 0, 2, 1]]
   return result.reduce(
     (acc, row) => acc.concat(row.join(' '), '\n'),
-    '',
+    ''
   );
 }
